@@ -1,0 +1,70 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        applicationId "com.sun.tinker.sns.share.demo"
+        minSdkVersion 14
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+
+    signingConfigs {
+        weibo {
+            storeFile file("weibo_debug.keystore")
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+
+        wechat {
+            storeFile file("wechat_debug.keystore")
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+
+        tencent {
+            storeFile file("tencent_debug.keystore")
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        weibo {
+            applicationId "com.sina.weibo.sdk.demo"
+            signingConfig signingConfigs.weibo
+        }
+
+        wechat {
+            applicationId "net.sourceforge.simcpux"
+            signingConfig signingConfigs.wechat
+        }
+
+        tencent {
+            applicationId "com.tencent.sample"
+            signingConfig signingConfigs.tencent
+        }
+
+        own {
+            applicationId "com.sun.tinker.sns.share.demo"
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:22.0.0'
+}
