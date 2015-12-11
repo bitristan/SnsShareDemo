@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -49,6 +51,11 @@ public class WXEntryActivity extends Activity implements WeiboShareUtil.WeiboCal
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.gravity = Gravity.BOTTOM;
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        getWindow().setAttributes(lp);
         setContentView(R.layout.activity_sns_share);
 
         mTencentShareUtil = new TencentShareUtil(this);
